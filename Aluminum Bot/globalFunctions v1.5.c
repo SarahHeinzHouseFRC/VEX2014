@@ -65,12 +65,12 @@ void resetGyro()
 		int millisec = 0;
 		while(millisec < 1000)
 		{
-			if(SensorValue[override])      // Push button to eject from short calibration
+			if(overrideAll())      // Push button to eject from short calibration
 				break;
 			wait1Msec(1);
 			millisec++;
 		}
-		if(!SensorValue[override])
+		if(!overrideAll())
 		{
 			displayLCDCenteredString(1, "Gyro Set Quick");
 			wait1Msec(500);

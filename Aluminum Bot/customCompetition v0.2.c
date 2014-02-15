@@ -2,6 +2,7 @@ void allMotorsOff();
 void allTasksStop();
 void pre_auton();
 void clearScreen();
+bool overrideAll();
 task autonomous();
 task usercontrol();
 
@@ -23,7 +24,8 @@ task main()
 		while (bIfiRobotDisabled)
 		{
 			clearScreen();
-			int toggle = true;
+			bool toggle = true;
+			int lightToggle = 0;
 			nTimeXX = 0;
 			while (true)
 			{
@@ -40,6 +42,16 @@ task main()
 					displayNextLCDString(autonName[currentPosition]);
 				}
 
+if(lightToggle < 5)
+{
+	lightToggle++;
+		bLCDBacklight = false;
+}
+	else
+{
+lightToggle = 0;
+	bLCDBacklight = true;
+}
 				for (int milliseconds = 0; milliseconds < 1000; milliseconds = milliseconds + 100)
 				{
 					if (!bIfiRobotDisabled)
@@ -51,7 +63,7 @@ task main()
 							break;
 						displayTime();
 						wait1Msec(1);
-						if(SensorValue[override])
+						if(overrideAll())
 						{
 							pre_auton();
 							nTimeXX = 0;
@@ -163,4 +175,12 @@ void clearScreen()
 	clearLCDLine(0);
 	clearLCDLine(1);
 	displayLCDPos(0, 0);
+}
+
+bool overrideAll()
+{
+	if((vexRT[Btn6UXmtr2] == 1 && vexRT[Btn6DXmtr2] == 1) || (vexRT[Btn6U] == 1 && vexRT[Btn6D] == 1) || SensorValue[override])
+		return(true);
+else
+	return(false);
 }

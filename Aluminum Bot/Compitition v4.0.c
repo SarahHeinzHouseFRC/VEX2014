@@ -26,7 +26,7 @@
 
 
 #include "settings.h"
-#include "customCompetition v0.1.c"
+#include "customCompetition v0.2.c"
 #include "globalFunctions v1.5.c"
 #include "pistonControl v0.1.c"
 #include "PID Turn v0.2.c"
@@ -55,7 +55,7 @@ if(bIfiRobotDisabled)
 	resetAllEncoders();
 	retractPistons();
 }
-	if(SensorValue[override])
+	if(overrideAll())
 	{
   	selectAuton();
 		resetGyro();

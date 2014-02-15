@@ -7,7 +7,7 @@ const int cursorPosition[3][5] = {
 void waitForRelease()
 {
 	while(nLCDButtons != 0){
-		if(SensorValue[override])
+		if(overrideAll())
 			break;
 	}
 }
@@ -16,7 +16,7 @@ void waitForRelease()
 void waitForPress()
 {
 	while(nLCDButtons == 0){
-		if(SensorValue[override])
+		if(overrideAll())
 			break;
 	}
 }
@@ -48,7 +48,7 @@ void moveCursor()
 
 void selectAuton()
 {
-	while(SensorValue[override])
+	while(overrideAll())
 	{
 		bLCDBacklight = true;
 	}
@@ -67,7 +67,7 @@ void selectAuton()
 
 	while(unfinalized)
 	{
-		if(SensorValue[override])
+		if(overrideAll())
 			break;
 		waitForRelease();
 		moveCursor();			// Refresh screen after button is released

@@ -11,7 +11,7 @@ int acceptedError = 5;
 int liftDriveTicks = -1000;
 int liftExtendedTicks = -5300;
 int pistonState = 0;    // 0 is throw, 1 is up, 2 is down
-bool mainJoystickActive = true;
+//bool mainJoystickActive = true;
 string mainBattery, backupBattery;
 int selectedAuton = 2; //2 is no auton
 int intakeTicks;
