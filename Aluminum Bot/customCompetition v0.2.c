@@ -45,12 +45,12 @@ task main()
 					if (!bIfiRobotDisabled)
 						break;
 
-					for (int times = 0; times < 20; times = times + 1)
+					for (int times = 0; times < 100; times = times + 1)
 					{
 						if (!bIfiRobotDisabled)
 							break;
 						displayTime();
-						wait1Msec(5);
+						wait1Msec(1);
 						if(SensorValue[override])
 						{
 							pre_auton();

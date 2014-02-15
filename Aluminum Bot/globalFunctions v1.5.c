@@ -38,20 +38,45 @@ void resetLiftEncoderToValue(int value)
 void resetGyro()
 {
 	clearScreen();
-	displayLCDCenteredString(1, "Gyro In 3");
-	wait10Msec(100);
-	displayLCDCenteredString(1, "Gyro In 2");
-	wait10Msec(100);
-	displayLCDCenteredString(1, "Gyro In 1");
-	wait10Msec(100);
-	displayLCDCenteredString(1, "NOW");
-	wait10Msec(100);
+	if(bIfiRobotDisabled)
+	{                                            // Do full calibration if disabled
+		displayLCDCenteredString(1, "Gyro In 3");
+		wait10Msec(100);
+		displayLCDCenteredString(1, "Gyro In 2");
+		wait10Msec(100);
+		displayLCDCenteredString(1, "Gyro In 1");
+		wait10Msec(100);
+		displayLCDCenteredString(1, "NOW");
+		wait10Msec(100);
+	}
 	displayLCDCenteredString(1, "DO NOT TOUCH");
 	SensorType[gyro] = sensorNone;
 	SensorType[gyro] = sensorGyro;
 	SensorFullCount[in2] = 3600000;
-	wait1Msec(3000);
-	displayLCDCenteredString(1, "Gyro Set");
+
+	if(bIfiRobotDisabled)
+	{
+		wait1Msec(3000);
+		displayLCDCenteredString(1, "Gyro Set");
+		wait1Msec(500);
+	}
+	else
+	{
+		int millisec = 0;
+		while(millisec < 1000)
+		{
+			if(SensorValue[override])      // Push button to eject from short calibration
+				break;
+			wait1Msec(1);
+			millisec++;
+		}
+		if(!SensorValue[override])
+		{
+			displayLCDCenteredString(1, "Gyro Set Quick");
+			wait1Msec(500);
+		}
+	}
+
 }
 
 

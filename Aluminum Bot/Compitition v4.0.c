@@ -49,13 +49,15 @@
 
 void pre_auton()
 {
+	bStopTasksBetweenModes = true;
+if(bIfiRobotDisabled)
+{
+	resetAllEncoders();
+	retractPistons();
+}
 	if(SensorValue[override])
 	{
-		bStopTasksBetweenModes = true;
-		retractPistons();
-		resetAllEncoders();
-		bLCDBacklight = true;
-		selectAuton();
+  	selectAuton();
 		resetGyro();
 	}
 	//resetGyro(); // MUST BE COMMENTED OUT
@@ -73,7 +75,10 @@ task autonomous()
 	else if(selectedAuton == 4) // Blue2 auton
 		blueBigBalls();
 	else                        // None or an error happend
-  	{}
+  	{
+  		displayLCDCenteredString(0, "Just chillin");
+  			displayLCDCenteredString(0, "here human");
+  		}
 }
 
 
