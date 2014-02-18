@@ -26,15 +26,15 @@
 
 
 #include "settings.h"
-#include "customCompetition v0.2.c"
-#include "globalFunctions v1.5.c"
-#include "pistonControl v0.1.c"
-#include "PID Turn v0.2.c"
-#include "autonFunctions v1.2.c"
-#include "autonSelection v1.2.c"
-#include "teliopFunctions v1.8.c"
-#include "autons v1.3.c"
-#include "watchDog v1.3.c"
+#include "customCompetition.c"
+#include "globalFunctions.c"
+#include "pistonControl.c"
+#include "PID Turn.c"
+#include "autonFunctions.c"
+#include "autonSelection.c"
+#include "teliopFunctions.c"
+#include "autons.c"
+#include "watchDog.c"
 
 
 
