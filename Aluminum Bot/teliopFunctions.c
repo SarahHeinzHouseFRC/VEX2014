@@ -105,23 +105,26 @@ void individualLiftControlXmit2()
 				else if	(vexRT[Btn7LXmtr2] == 1)
 					motor[LiftLeft] = -50;
 				else
-					motor[LiftLeft] = 0;
+					motor[LiftLeft] = -1vexRT[Ch3Xmtr2];
 
 		if	(vexRT[Btn8RXmtr2] == 1)
 					motor[LiftRight] = 50;
 				else if	(vexRT[Btn8LXmtr2] == 1)
 					motor[LiftRight] = -50;
 				else
-					motor[LiftRight] = 0;
+					motor[LiftRight] = -vexRT[Ch2Xmtr2];
 			}
 
 
 			task liftReset()
-{ if (nVexRCReceiveState & vrXmit2)
-	{
-		if((vexRT[Btn7DXmtr2] == 1) && (vexRT[Btn7UXmtr2] == 1))
+{
+while(true)
+{
+	if (nVexRCReceiveState & vrXmit2)
+{
+			if((vexRT[Btn7DXmtr2] == 1) && (vexRT[Btn7UXmtr2] == 1))
 		{
-			while(vexRT[Btn7DXmtr2] == 1)
+			while(vexRT[Btn7DXmtr2] || (vexRT[Btn7UXmtr2])
 			{
 				individualLiftControlXmit2();
 			}
@@ -129,7 +132,7 @@ void individualLiftControlXmit2()
 		}
 		else if((vexRT[Btn8DXmtr2] == 1) && (vexRT[Btn8UXmtr2] == 1))
 		{
-			while(vexRT[Btn8DXmtr2] == 1)
+			while(vexRT[Btn8DXmtr2] || (vexRT[Btn8UXmtr2])
 			{
 				individualLiftControlXmit2();
 			}
@@ -141,4 +144,6 @@ void individualLiftControlXmit2()
 		wait10Msec(100);
 	}
 	wait10Msec(10);
+
+}
 }
