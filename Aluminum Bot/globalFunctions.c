@@ -55,15 +55,15 @@ void resetGyro()
 	SensorFullCount[in2] = 3600000;
 
 	if(bIfiRobotDisabled)
-	{
+	{ displayLCDCenteredString(0, "CALIBRATING");
 		wait1Msec(3000);
 		displayLCDCenteredString(1, "Gyro Set");
 		wait1Msec(500);
 	}
 	else
-	{
+	{  displayLCDCenteredString(0, "PUSH BTN TO STOP");
 		int millisec = 0;
-		while(millisec < 1000)
+		while(millisec < 1500)
 		{
 			if(overrideAll())      // Push button to eject from short calibration
 				break;

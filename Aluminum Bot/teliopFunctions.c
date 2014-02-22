@@ -1,5 +1,6 @@
 task driveMain()
-{while(true)
+{
+	while(true)
 	{
 		if(abs(vexRT[Ch3]) > threshold && abs(vexRT[Ch2]) > threshold)
 			driveAtSpeed((vexRT[Ch2]),(vexRT[Ch3]));
@@ -18,13 +19,13 @@ task driveMain()
 
 
 void intakeMain()
-{// Intake for 1 controller.
+{
 	if(vexRT[Btn5D] == 1 && vexRT[Btn5U] == 0)
-		intakeAtSpeed(intakeSpeed);// Intake roller inward.
+		intakeAtSpeed(intakeSpeed);              // Intake roller inward.
 	else  if(vexRT[Btn5D]==0&&vexRT[Btn5U]==1)
-		intakeAtSpeed(-intakeSpeed);// Intake roller outward.
+		intakeAtSpeed(-intakeSpeed);             // Intake roller outward.
 	else
-		intakeAtSpeed(0);	// Stop intake roller movement.
+		intakeAtSpeed(0);	                       // Stop intake roller movement.
 }
 
 
@@ -34,17 +35,25 @@ void climbRaiseMain()
 	liftMove(-127);
 	positionArm(scoreHeight);
 	positionLift(liftExtendedTicks);
+
 	while(true)
 	{
 		if(vexRT[Btn7L] == 1)
-		{ stopAllMotors();
+		{
+			stopAllMotors();
 			while(vexRT[Btn7L] == 1)
 			{
 				if(armPosition() > maxHeight + 200)
+				{
 					while(armPosition() > maxHeight - 200)
-					armAtSpeed(-armSpeed);
+					{
+						armAtSpeed(-armSpeed);
+					}
+				}
 				else
+				{
 					armAtSpeed(127);
+				}
 			}
 			armAtSpeed(1);
 			positionLift(-2000);
@@ -64,8 +73,10 @@ task armControlMain()
 	while(true)
 	{
 		if(armPosition() > maxHeight + 200)
-			armAtSpeed(-armSpeed);
-		else if(vexRT[Btn7D] || vexRT[Btn7U] || vexRT[Btn7R] || vexRT[Btn7L]
+	{
+		armAtSpeed(-armSpeed);
+	}
+	else if(vexRT[Btn7D] || vexRT[Btn7U] || vexRT[Btn7R] || vexRT[Btn7L]
 			|| vexRT[Btn8D] || vexRT[Btn8U] || vexRT[Btn8R] || vexRT[Btn8L]
 		|| vexRT[Btn6U] || vexRT[Btn6D] || vexRT[Btn5D] || vexRT[Btn5U])
 		{
@@ -90,7 +101,7 @@ task armControlMain()
 			else if(vexRT[Btn7U] == 1)
 				climbRaiseMain();
 			else
-			stopArm();
+				stopArm();
 		}
 		else
 			stopArm();
@@ -101,49 +112,49 @@ task armControlMain()
 void individualLiftControlXmit2()
 {
 	if	(vexRT[Btn7RXmtr2] == 1)
-					motor[LiftLeft] = 50;
-				else if	(vexRT[Btn7LXmtr2] == 1)
-					motor[LiftLeft] = -50;
-				else
-					motor[LiftLeft] = -1vexRT[Ch3Xmtr2];
-
-		if	(vexRT[Btn8RXmtr2] == 1)
-					motor[LiftRight] = 50;
-				else if	(vexRT[Btn8LXmtr2] == 1)
-					motor[LiftRight] = -50;
-				else
-					motor[LiftRight] = -vexRT[Ch2Xmtr2];
-			}
-
-
-			task liftReset()
-{
-while(true)
-{
-	if (nVexRCReceiveState & vrXmit2)
-{
-			if((vexRT[Btn7DXmtr2] == 1) && (vexRT[Btn7UXmtr2] == 1))
-		{
-			while(vexRT[Btn7DXmtr2] || (vexRT[Btn7UXmtr2])
-			{
-				individualLiftControlXmit2();
-			}
-			resetLiftEncoderToValue(0);
-		}
-		else if((vexRT[Btn8DXmtr2] == 1) && (vexRT[Btn8UXmtr2] == 1))
-		{
-			while(vexRT[Btn8DXmtr2] || (vexRT[Btn8UXmtr2])
-			{
-				individualLiftControlXmit2();
-			}
-			resetLiftEncoderToValue(liftDriveTicks);
-		}
-	}
+		motor[LiftLeft] = 50;
+	else if	(vexRT[Btn7LXmtr2] == 1)
+		motor[LiftLeft] = -50;
 	else
-	{
-		wait10Msec(100);
-	}
-	wait10Msec(10);
+		motor[LiftLeft] = -vexRT[Ch3Xmtr2];
 
+	if	(vexRT[Btn8RXmtr2] == 1)
+		motor[LiftRight] = 50;
+	else if	(vexRT[Btn8LXmtr2] == 1)
+		motor[LiftRight] = -50;
+	else
+		motor[LiftRight] = -vexRT[Ch2Xmtr2];
 }
+
+
+task liftReset()
+{
+	while(true)
+	{
+		if (nVexRCReceiveState & vrXmit2)
+		{
+			if((vexRT[Btn7DXmtr2] == 1) && (vexRT[Btn7UXmtr2] == 1))
+			{
+				while(vexRT[Btn7DXmtr2] || vexRT[Btn7UXmtr2])
+				{
+					individualLiftControlXmit2();
+				}
+				resetLiftEncoderToValue(0);
+			}
+			else if((vexRT[Btn8DXmtr2] == 1) && (vexRT[Btn8UXmtr2] == 1))
+			{
+				while(vexRT[Btn8DXmtr2] || vexRT[Btn8UXmtr2])
+				{
+					individualLiftControlXmit2();
+				}
+				resetLiftEncoderToValue(liftDriveTicks);
+			}
+		}
+		else
+		{
+			wait10Msec(100);
+		}
+		wait10Msec(10);
+
+	}
 }
