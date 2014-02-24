@@ -10,10 +10,10 @@ int zeroValue = 450;     // Value of pot at zero arm height
 int acceptedError = 5;
 int liftDriveTicks = -1000;
 int liftExtendedTicks = -5300;
-int pistonState = 0;    // 0 is throw, 1 is up, 2 is down
+int pistonState = 0;     // 0 is throw, 1 is up, 2 is down
 string mainBattery, backupBattery;
-int selectedAuton = 2; //2 is no auton
+int selectedAuton = 2;   //2 is no auton
 int intakeTicks;
-int currentPosition = 2;	// No position is default, 0=RED1 1=RED2 2=NONE 3=BLUE1 4=BLUE2
+int currentPosition = 2; // No position is default, 0=RED1 1=RED2 2=NONE 3=BLUE1 4=BLUE2
 const string autonName[5] = {"RED CORNER", "RED BALLS", "NONE", "BLUE SKILLS", "BLUE BALLS"};
 const int leftButton = 1, centerButton = 2, rightButton = 4, numberOfAutonPositions = 4;

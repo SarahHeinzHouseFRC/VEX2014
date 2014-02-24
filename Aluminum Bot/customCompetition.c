@@ -29,29 +29,25 @@ task main()
 			nTimeXX = 0;
 			while (true)
 			{
-				if(toggle)
-				{
+
+				if(toggle){
 					toggle = !toggle;
 					clearScreen();
 					displayNextLCDString("Disabled");
-				}
-				else
-				{
+					}else{
 					toggle = !toggle;
 					clearScreen();
 					displayNextLCDString(autonName[currentPosition]);
 				}
 
-if(lightToggle < 5)
-{
-	lightToggle++;
-		bLCDBacklight = false;
-}
-	else
-{
-lightToggle = 0;
-	bLCDBacklight = true;
-}
+				if(lightToggle < 5){
+					lightToggle++;
+					bLCDBacklight = false;
+				}else{
+					lightToggle = 0;
+					bLCDBacklight = true;
+				}
+
 				for (int milliseconds = 0; milliseconds < 1000; milliseconds = milliseconds + 100)
 				{
 					if (!bIfiRobotDisabled)
@@ -63,6 +59,7 @@ lightToggle = 0;
 							break;
 						displayTime();
 						wait1Msec(1);
+
 						if(overrideAll())
 						{
 							pre_auton();
@@ -181,6 +178,6 @@ bool overrideAll()
 {
 	if((vexRT[Btn6UXmtr2] == 1 && vexRT[Btn6DXmtr2] == 1) || (vexRT[Btn6U] == 1 && vexRT[Btn6D] == 1) || SensorValue[override])
 		return(true);
-else
-	return(false);
+	else
+		return(false);
 }
