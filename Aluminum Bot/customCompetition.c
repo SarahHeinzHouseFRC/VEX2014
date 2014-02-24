@@ -84,17 +84,12 @@ task main()
 		if (bIfiAutonomousMode)
 		{
 			displayNextLCDString("Autonomous");
+			displayNextLCDString(autonName[currentPosition]);
 			StartTask(autonomous);
 
-			// Waiting for autonomous phase to end
 			while (bIfiAutonomousMode && !bIfiRobotDisabled)
 			{
-				if (!bVEXNETActive)
-				{
-					if (nVexRCReceiveState == vrNoXmiters) // the transmitters are powered off!!
-						allMotorsOff();
-				}
-				wait1Msec(50);               // Waiting for autonomous phase to end
+				wait1Msec(150);               // Waiting for autonomous phase to end
 			}
 			allMotorsOff();
 			allTasksStop();
@@ -105,13 +100,9 @@ task main()
 			displayNextLCDString("User Control");
 			StartTask(usercontrol);
 
-			// Here we repeat loop waiting for user control to end and (optionally) start
-			// of a new competition run
 			while (!bIfiAutonomousMode && !bIfiRobotDisabled)
 			{
-				if (nVexRCReceiveState == vrNoXmiters) // the transmitters are powered off!!
-					allMotorsOff();
-				wait1Msec(100);
+				wait1Msec(200);
 			}
 			allMotorsOff();
 			allTasksStop();
