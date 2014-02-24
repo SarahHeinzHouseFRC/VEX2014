@@ -98,11 +98,14 @@ task main()
 		else
 		{
 			displayNextLCDString("User Control");
+
 			StartTask(usercontrol);
 
 			while (!bIfiAutonomousMode && !bIfiRobotDisabled)
 			{
-				wait1Msec(200);
+				wait1Msec(250);
+					sprintf(mainBattery, "%1.2f%c", nImmediateBatteryLevel/1000.0,'V');
+      displayLCDCenteredString(1, mainBattery);
 			}
 			allMotorsOff();
 			allTasksStop();
