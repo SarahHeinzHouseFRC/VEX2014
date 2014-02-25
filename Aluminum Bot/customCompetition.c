@@ -24,6 +24,9 @@ task main()
 		while (bIfiRobotDisabled)
 		{
 			clearScreen();
+		SensorValue[solenoid1] = false;
+	  SensorValue[solenoid2] = false;
+  	pistonState = 1;
 			bool toggle = true;
 			int lightToggle = 0;
 			nTimeXX = 0;
@@ -83,6 +86,7 @@ task main()
 		clearScreen();
 		if (bIfiAutonomousMode)
 		{
+			bLCDBacklight = true;
 			displayNextLCDString("Autonomous");
 			displayNextLCDString(autonName[currentPosition]);
 			StartTask(autonomous);
@@ -97,6 +101,7 @@ task main()
 
 		else
 		{
+			bLCDBacklight = true;
 			displayNextLCDString("User Control");
 
 			StartTask(usercontrol);

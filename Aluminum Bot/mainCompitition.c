@@ -53,15 +53,22 @@ void pre_auton()
 	if(bIfiRobotDisabled)
 	{
 		resetAllEncoders();
-		retractPistons();
 	}
 
 	if(overrideAll())
 	{
+		while(overrideAll())
+		{
+			wait10Msec(1);
+			}
 		selectAuton();
-		resetGyro();
+		if(!overrideAll())
+	  	resetGyro();
 	}
-	//resetGyro(); // MUST BE COMMENTED OUT
+	while(overrideAll())
+		{
+			wait10Msec(1);
+			}
 }
 
 

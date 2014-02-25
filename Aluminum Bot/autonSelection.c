@@ -7,18 +7,16 @@ const int cursorPosition[3][5] = {
 void waitForRelease()
 {
 	while(nLCDButtons != 0){
-		if(overrideAll())
-			break;
+	//	if(overrideAll())
+//			break;
 	}
 }
 
 
 void waitForPress()
 {
-	while(nLCDButtons == 0){
-		if(overrideAll())
-			break;
-	}
+	while(nLCDButtons == 0 && !overrideAll()){
+}
 }
 
 
@@ -48,13 +46,10 @@ void moveCursor()
 
 void selectAuton()
 {
-	while(overrideAll())
-	{
-		bLCDBacklight = true;
-	}
-
+	bLCDBacklight = true;
+		displayBatteryVoltage();
 	bool unfinalized;
-	displayBatteryVoltage();
+
 	waitForPress();				// Display bat stat untill a button is pushed
 
 
@@ -65,7 +60,7 @@ void selectAuton()
 	displayLCDString(0, 1, "RED1 	X  BLUE1"); // Dislpay a template on the screen for selection
 	displayLCDString(1, 1, "RED2     BLUE2");
 
-	while(unfinalized)
+	while(unfinalized && !overrideAll())
 	{
 		if(overrideAll())
 			break;
