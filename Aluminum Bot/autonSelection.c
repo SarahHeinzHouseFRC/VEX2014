@@ -6,17 +6,15 @@ const int cursorPosition[3][5] = {
 
 void waitForRelease()
 {
-	while(nLCDButtons != 0){
-	//	if(overrideAll())
-//			break;
-	}
+	while(nLCDButtons != 0)
+		{}
 }
 
 
 void waitForPress()
 {
-	while(nLCDButtons == 0 && !overrideAll()){
-}
+	while(nLCDButtons == 0 && !overrideAll())
+		{}
 }
 
 

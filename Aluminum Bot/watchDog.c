@@ -12,6 +12,7 @@ task watchDog()
 			StopTask(armControlMain);
 			StopTask(pistonControl);
 			StopTask(liftReset);
+			stopAllMotors();
 			while(overrideAll())
 			{
 				StartTask(driveMain);
