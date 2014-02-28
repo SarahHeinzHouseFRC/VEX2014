@@ -62,7 +62,8 @@ void climbRaiseMain()
 			liftMove(0);
 		}
 		else
-		{}
+		{
+		}
 	}
 }
 
@@ -73,10 +74,10 @@ task armControlMain()
 	while(true)
 	{
 		if(armPosition() > maxHeight + 200)
-	{
-		armAtSpeed(-armSpeed);
-	}
-	else if(vexRT[Btn7D] || vexRT[Btn7U] || vexRT[Btn7R] || vexRT[Btn7L]
+		{
+			armAtSpeed(-armSpeed);
+		}
+		else if(vexRT[Btn7D] || vexRT[Btn7U] || vexRT[Btn7R] || vexRT[Btn7L]
 			|| vexRT[Btn8D] || vexRT[Btn8U] || vexRT[Btn8R] || vexRT[Btn8L]
 		|| vexRT[Btn6U] || vexRT[Btn6D] || vexRT[Btn5D] || vexRT[Btn5U])
 		{
@@ -102,6 +103,8 @@ task armControlMain()
 				climbRaiseMain();
 			else if(vexRT[Btn7D] == 1)
 				positionLift(0);
+			else if(vexRT[Btn8R] == 1)
+				positionLift(liftExtendedTicks);
 			else
 				stopArm();
 		}
@@ -141,16 +144,22 @@ task liftReset()
 				{
 					individualLiftControlXmit2();
 				}
+				motor[LiftLeft] = 0;
+				motor[LiftRight] = 0;
 				resetLiftEncoderToValue(0);
 			}
-			else if((vexRT[Btn8DXmtr2] == 1) && (vexRT[Btn8UXmtr2] == 1))
-			{
-				while(vexRT[Btn8DXmtr2] || vexRT[Btn8UXmtr2])
-				{
-					individualLiftControlXmit2();
-				}
-				resetLiftEncoderToValue(liftDriveTicks);
-			}
+
+			//else if((vexRT[Btn8DXmtr2] == 1) && (vexRT[Btn8UXmtr2] == 1))
+			//{
+			//	while(vexRT[Btn8DXmtr2] || vexRT[Btn8UXmtr2])
+			//	{
+			//		individualLiftControlXmit2();
+			//	}
+			//	motor[LiftLeft] = 0;
+			//	motor[LiftRight] = 0;
+			//  nMotorEncoder[LiftLeft] = 1000;
+	  //    nMotorEncoder[LiftRight] = 1000;           // For some reason setting the encoders to a value resets them now
+			//}
 		}
 		else
 		{
