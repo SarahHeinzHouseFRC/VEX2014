@@ -215,40 +215,40 @@ void positionLift(int position)
 
 
 
-	if (abs(nMotorEncoder[LiftLeft]) > position && abs(nMotorEncoder[LiftRight]) > position)
+	if (-nMotorEncoder[LiftLeft] > position && -nMotorEncoder[LiftRight] > position)
 	{
-		while(abs(nMotorEncoder[LiftLeft]) > position && abs(nMotorEncoder[LiftRight]) > position)
+		while(-nMotorEncoder[LiftLeft] > position && -nMotorEncoder[LiftRight] > position)
 		{
 			motor[LiftLeft] = 127;
 			motor[LiftRight] = 127;
 		}
 
-		while(abs(nMotorEncoder[LiftLeft]) > position)
+		while(-nMotorEncoder[LiftLeft] > position)
 		{
 			motor[LiftLeft] = 127;
 			motor[LiftRight] = 0;
 		}
-		while(abs(nMotorEncoder[LiftRight]) > position)
+		while(-nMotorEncoder[LiftRight] > position)
 		{
 			motor[LiftRight] = 127;
 			motor[LiftLeft] = 0;
 		}
 	}
 
-	else if (abs(nMotorEncoder[LiftLeft]) < position && abs(nMotorEncoder[LiftRight]) < position)
+	else if (-nMotorEncoder[LiftLeft] < position && -nMotorEncoder[LiftRight] < position)
 	{
-		while(abs(nMotorEncoder[LiftLeft]) < position && abs(nMotorEncoder[LiftRight]) < position)
+		while(-nMotorEncoder[LiftLeft] < position && -nMotorEncoder[LiftRight] < position)
 		{
 			motor[LiftLeft] = -127;
 			motor[LiftRight] = -127;
 		}
 
-		while(abs(nMotorEncoder[LiftLeft]) < position)
+		while(-nMotorEncoder[LiftLeft] < position)
 		{
 			motor[LiftLeft] = -127;
 			motor[LiftRight] = 0;
 		}
-		while(abs(nMotorEncoder[LiftRight]) < position)
+		while(-nMotorEncoder[LiftRight] < position)
 		{
 			motor[LiftRight] = -127;
 			motor[LiftLeft] = 0;
