@@ -100,6 +100,8 @@ task armControlMain()
 				positionLift(liftDriveTicks);
 			else if(vexRT[Btn7U] == 1)
 				climbRaiseMain();
+			else if(vexRT[Btn7D] == 1)
+				positionLift(0);
 			else
 				stopArm();
 		}

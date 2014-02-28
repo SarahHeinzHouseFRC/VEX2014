@@ -8,8 +8,8 @@ int maxHeight = 2400;    // Maximum code allowed pot value number for arm to get
 int scoreHeight = 1900;  // Height of arm that is optimum for scoring
 int zeroValue = 450;     // Value of pot at zero arm height
 int acceptedError = 5;
-int liftDriveTicks = -1000;
-int liftExtendedTicks = -5300;
+int liftDriveTicks = 1000;
+int liftExtendedTicks = 5300;
 int pistonState = 0;     // 0 is throw, 1 is up, 2 is down
 string mainBattery, backupBattery;
 int selectedAuton = 2;   //2 is no auton
