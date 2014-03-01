@@ -1,4 +1,4 @@
-// Driving
+// Drive motors
 void driveAtSpeed(int rightSpeed, int leftSpeed)
 {
 	motor[driveRightBack]  = rightSpeed;
@@ -9,8 +9,7 @@ void driveAtSpeed(int rightSpeed, int leftSpeed)
 
 
 
-
-// Resetting sensors and stopping all motors
+// Resetting sensors and stopping motors
 void resetDriveEncoders()
 {
 	nMotorEncoder[driveRightFront] = 0;
@@ -29,7 +28,7 @@ void resetAllEncoders()
 }
 
 
-void resetLiftEncoderToValue(int value)
+void resetLiftEncoderToValue(int value)   // Not reseting to value anymore, just resets them, UNKOWN BUG
 {
 	nMotorEncoder[LiftLeft] = value;
 	nMotorEncoder[LiftRight] = value;
@@ -206,15 +205,6 @@ void liftMove(int speed)
 
 void positionLift(int position)
 {
-	//while(nMotorEncoder[LiftRight] < 0)
-	//	motor[LiftRight] = -127;
-	//motor[LiftRight] = 0;
-	//while(nMotorEncoder[LiftLeft] > 0)
-	//	motor[LiftLeft] = -127;
-	//motor[LiftLeft] = 0;
-
-
-
 	if (-nMotorEncoder[LiftLeft] > position && -nMotorEncoder[LiftRight] > position)
 	{
 		while(-nMotorEncoder[LiftLeft] > position && -nMotorEncoder[LiftRight] > position)
